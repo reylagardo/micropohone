@@ -25,8 +25,10 @@ body {
     justify-content: center;
     align-items: center;
     z-index: 9999;
-    background: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(5px);
+    /* Remove dark overlay and blur behind the UI. Make the container fully transparent
+       so that only the control panel elements are visible above the game. */
+    background: transparent;
+    backdrop-filter: none;
 }
 
 .control-panel {

@@ -173,7 +173,10 @@ function closeUI() {
     const container = document.getElementById('container');
     container.classList.add('hidden');
     
-    fetch('https://micropone/closeUI', {
+        // Use the correct resource name when sending NUI callbacks.
+        // The original code contained a typo ("micropone") which prevented the UI from communicating
+        // with the Lua callbacks. Replace it with "micropohone" to match the resource folder name.
+        fetch('https://micropohone/closeUI', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -187,7 +190,7 @@ function closeUI() {
 
 // Preview echo
 function previewEcho() {
-    fetch('https://micropone/previewEcho', {
+        fetch('https://micropohone/previewEcho', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -209,7 +212,7 @@ function previewEcho() {
 
 // Apply settings
 function applySettings() {
-    fetch('https://micropone/updateEcho', {
+        fetch('https://micropohone/updateEcho', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -231,7 +234,7 @@ function applySettings() {
 
 // Reset settings
 function resetSettings() {
-    fetch('https://micropone/resetSettings', {
+        fetch('https://micropohone/resetSettings', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
