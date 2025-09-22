@@ -9,6 +9,14 @@ let currentSettings = {
 
 let config = {};
 
+// Determine the correct resource name for NUI callbacks. In FiveM, NUI calls
+// use the resource name as the URL prefix (e.g. https://resourceName/callback).
+// Using GetParentResourceName() ensures the JS works even if the folder
+// name changes. Fall back to 'micropohone' if the function is undefined.
+const resourceName = (typeof GetParentResourceName === 'function')
+    ? GetParentResourceName()
+    : 'micropohone';
+
 // Initialize UI
 window.addEventListener('message', function(event) {
     const data = event.data;
@@ -176,7 +184,7 @@ function closeUI() {
         // Use the correct resource name when sending NUI callbacks.
         // The original code contained a typo ("micropone") which prevented the UI from communicating
         // with the Lua callbacks. Replace it with "micropohone" to match the resource folder name.
-        fetch('https://micropohone/closeUI', {
+        fetch(`https://${resourceName}/closeUI`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -190,7 +198,7 @@ function closeUI() {
 
 // Preview echo
 function previewEcho() {
-        fetch('https://micropohone/previewEcho', {
+        fetch(`https://${resourceName}/previewEcho`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -212,7 +220,7 @@ function previewEcho() {
 
 // Apply settings
 function applySettings() {
-        fetch('https://micropohone/updateEcho', {
+        fetch(`https://${resourceName}/updateEcho`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -234,7 +242,7 @@ function applySettings() {
 
 // Reset settings
 function resetSettings() {
-        fetch('https://micropohone/resetSettings', {
+        fetch(`https://${resourceName}/resetSettings`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

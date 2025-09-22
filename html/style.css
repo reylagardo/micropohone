@@ -31,16 +31,34 @@ body {
     backdrop-filter: none;
 }
 
+/*
+ * Style the main control panel.
+ *
+ * Previously the panel used a very dark gradient which made the entire UI
+ * look like it had a black background.  To reduce the heavy dark feel and
+ * allow some of the game world to show through, the gradient has been
+ * replaced with a semi‑transparent fill.  A gentle blur is retained to
+ * separate the panel contents from the game behind it while still
+ * allowing colours and motion to bleed through.  The border uses a
+ * lighter colour to better integrate with the transparent background.
+ */
 .control-panel {
-    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    /* Slightly transparent black fill instead of a solid dark gradient */
+    background: rgba(0, 0, 0, 0.4);
     border-radius: 20px;
     padding: 30px;
     width: 450px;
     max-height: 80vh;
     overflow-y: auto;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
-    border: 1px solid #333;
-    backdrop-filter: blur(10px);
+    /* Remove heavy drop shadow; rely on subtle blur for separation */
+    box-shadow: none;
+    /* Use a lighter border colour */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    /* Remove blur on the backdrop to prevent black edges appearing around
+     * the rounded corners.  Using backdrop-filter with a border-radius
+     * can cause black artefacts on some browsers.  Without the blur the
+     * panel still remains semi‑transparent thanks to its RGBA background. */
+    backdrop-filter: none;
     animation: slideIn 0.3s ease-out;
 }
 
@@ -101,7 +119,12 @@ body {
 
 .section {
     margin-bottom: 25px;
-    background: rgba(255, 255, 255, 0.05);
+    /* Lighten the section backgrounds.  The original colour was almost
+     * completely black which contributed to the perception of a dark UI.
+     * Using a translucent black with a slightly higher opacity creates
+     * contrast without turning the entire panel solid.  Borders are
+     * lightened for better separation. */
+    background: rgba(0, 0, 0, 0.25);
     padding: 20px;
     border-radius: 15px;
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -295,7 +318,9 @@ body {
 }
 
 .echo-type {
-    background: rgba(255, 255, 255, 0.05);
+    /* Echo type buttons: use a slightly more opaque background than before
+     * so they stand out against the now‑lighter panel background. */
+    background: rgba(0, 0, 0, 0.25);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 10px;
     padding: 15px;
@@ -309,13 +334,13 @@ body {
 }
 
 .echo-type:hover {
-    background: rgba(0, 255, 136, 0.1);
+    background: rgba(0, 255, 136, 0.2);
     border-color: #00ff88;
     transform: translateY(-2px);
 }
 
 .echo-type.active {
-    background: rgba(0, 255, 136, 0.2);
+    background: rgba(0, 255, 136, 0.3);
     border-color: #00ff88;
     color: #00ff88;
 }
