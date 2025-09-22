@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Echo Control Panel</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div id="container" class="hidden">
+        <div class="control-panel">
+            <div class="header">
+                <div class="title">
+                    <i class="fas fa-volume-up"></i>
+                    <h2>Echo Control Panel</h2>
+                </div>
+                <button class="close-btn" onclick="closeUI()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="content">
+                <!-- Power Toggle -->
+                <div class="section">
+                    <div class="section-header">
+                        <i class="fas fa-power-off"></i>
+                        <h3>Power</h3>
+                    </div>
+                    <div class="power-toggle">
+                        <input type="checkbox" id="powerSwitch" class="toggle-switch">
+                        <label for="powerSwitch" class="toggle-label">
+                            <span class="toggle-text">OFF</span>
+                            <span class="toggle-text">ON</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Echo Strength -->
+                <div class="section">
+                    <div class="section-header">
+                        <i class="fas fa-signal"></i>
+                        <h3>Echo Strength</h3>
+                        <span class="value-display" id="strengthValue">50%</span>
+                    </div>
+                    <div class="slider-container">
+                        <input type="range" id="strengthSlider" min="0" max="100" value="50" class="slider">
+                        <div class="equalizer">
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Distance -->
+                <div class="section">
+                    <div class="section-header">
+                        <i class="fas fa-broadcast-tower"></i>
+                        <h3>Voice Range</h3>
+                        <span class="value-display" id="distanceValue">20m</span>
+                    </div>
+                    <div class="slider-container">
+                        <input type="range" id="distanceSlider" min="5" max="50" value="20" class="slider">
+                        <div class="distance-indicator">
+                            <div class="range-circle"></div>
+                            <div class="range-circle"></div>
+                            <div class="range-circle"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Echo Type -->
+                <div class="section">
+                    <div class="section-header">
+                        <i class="fas fa-music"></i>
+                        <h3>Echo Type</h3>
+                    </div>
+                    <div class="echo-types">
+                        <div class="echo-type active" data-type="hall">
+                            <i class="fas fa-building"></i>
+                            <span>Hall</span>
+                        </div>
+                        <div class="echo-type" data-type="cave">
+                            <i class="fas fa-mountain"></i>
+                            <span>Cave</span>
+                        </div>
+                        <div class="echo-type" data-type="stadium">
+                            <i class="fas fa-futbol"></i>
+                            <span>Stadium</span>
+                        </div>
+                        <div class="echo-type" data-type="custom">
+                            <i class="fas fa-sliders-h"></i>
+                            <span>Custom</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Advanced Settings -->
+                <div class="section advanced-section">
+                    <div class="section-header">
+                        <i class="fas fa-cogs"></i>
+                        <h3>Advanced Settings</h3>
+                        <button class="toggle-advanced" onclick="toggleAdvanced()">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="advanced-content">
+                        <div class="advanced-item">
+                            <label>Delay (ms)</label>
+                            <input type="range" id="delaySlider" min="100" max="1000" value="500" class="slider mini">
+                            <span class="mini-value" id="delayValue">500ms</span>
+                        </div>
+                        <div class="advanced-item">
+                            <label>Decay</label>
+                            <input type="range" id="decaySlider" min="0" max="100" value="50" class="slider mini">
+                            <span class="mini-value" id="decayValue">0.5</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <div class="controls">
+                    <button class="btn btn-preview" onclick="previewEcho()">
+                        <i class="fas fa-play"></i>
+                        Preview
+                    </button>
+                    <button class="btn btn-apply" onclick="applySettings()">
+                        <i class="fas fa-check"></i>
+                        Apply
+                    </button>
+                    <button class="btn btn-reset" onclick="resetSettings()">
+                        <i class="fas fa-undo"></i>
+                        Reset
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
